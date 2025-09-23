@@ -1,23 +1,23 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'expo-status-bar';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { StatusBar } from 'expo-status-bar'
 
 // Import screens
-import HomeScreen from './src/screens/HomeScreen';
-import SongDetailScreen from './src/screens/SongDetailScreen';
+import HomeScreen from './src/screens/HomeScreen'
+import SongDetailScreen from './src/screens/SongDetailScreen'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#2c3e50',
+            backgroundColor: '#004411',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -37,5 +37,5 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }

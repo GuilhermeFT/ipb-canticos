@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
 const SongCard = ({ song, onPress }) => {
   return (
@@ -13,15 +13,13 @@ const SongCard = ({ song, onPress }) => {
           <Text style={styles.title} numberOfLines={2}>
             {song.title}
           </Text>
-          <Text style={styles.subtitle}>
-            Cântico {song.index}
-          </Text>
+          <Text style={styles.subtitle}>Cântico {song.index}</Text>
         </View>
         <Ionicons name="chevron-forward" size={20} color="#ccc" />
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   card: {
@@ -47,7 +45,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#004411',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -70,6 +68,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
-});
+})
 
-export default SongCard;
+export default SongCard

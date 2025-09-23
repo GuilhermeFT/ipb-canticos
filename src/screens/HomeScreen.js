@@ -1,18 +1,24 @@
-import React from 'react';
-import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
-import { useSongs } from '../hooks/useSongs';
-import SearchBar from '../components/SearchBar';
-import SongCard from '../components/SongCard';
+import React from 'react'
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+} from 'react-native'
+import { useSongs } from '../hooks/useSongs'
+import SearchBar from '../components/SearchBar'
+import SongCard from '../components/SongCard'
 
 const HomeScreen = ({ navigation }) => {
-  const { songs, searchQuery, handleSearch, loading, totalSongs } = useSongs();
+  const { songs, searchQuery, handleSearch, loading, totalSongs } = useSongs()
 
   const renderSongItem = ({ item }) => (
     <SongCard
       song={item}
       onPress={() => navigation.navigate('SongDetail', { song: item })}
     />
-  );
+  )
 
   const renderHeader = () => (
     <>
@@ -23,30 +29,31 @@ const HomeScreen = ({ navigation }) => {
       />
       <View style={styles.statsContainer}>
         <Text style={styles.statsText}>
-          {searchQuery ? `${songs.length} de ${totalSongs} cânticos` : `${totalSongs} cânticos`}
+          {searchQuery
+            ? `${songs.length} de ${totalSongs} cânticos`
+            : `${totalSongs} cânticos`}
         </Text>
       </View>
     </>
-  );
+  )
 
   const renderEmptyState = () => (
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>
         {searchQuery
           ? `Nenhum cântico encontrado para "${searchQuery}"`
-          : 'Nenhum cântico disponível'
-        }
+          : 'Nenhum cântico disponível'}
       </Text>
     </View>
-  );
+  )
 
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2c3e50" />
+        <ActivityIndicator size="large" color="#004411" />
         <Text style={styles.loadingText}>Carregando cânticos...</Text>
       </View>
-    );
+    )
   }
 
   return (
@@ -61,8 +68,8 @@ const HomeScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -104,6 +111,6 @@ const styles = StyleSheet.create({
   emptyList: {
     flexGrow: 1,
   },
-});
+})
 
-export default HomeScreen;
+export default HomeScreen

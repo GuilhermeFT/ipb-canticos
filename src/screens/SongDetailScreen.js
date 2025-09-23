@@ -1,20 +1,27 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Share } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react'
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  Share,
+} from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
 const SongDetailScreen = ({ route }) => {
-  const { song } = route.params;
+  const { song } = route.params
 
   const handleShare = async () => {
     try {
       await Share.share({
         message: `${song.title}\n\n${song.lyrics}\n\n- Cânticos Espirituais IPB`,
         title: song.title,
-      });
+      })
     } catch (error) {
-      console.error('Error sharing:', error);
+      console.error('Error sharing:', error)
     }
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -24,16 +31,19 @@ const SongDetailScreen = ({ route }) => {
           <Text style={styles.title}>{song.title}</Text>
         </View>
         <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
-          <Ionicons name="share-outline" size={24} color="#2c3e50" />
+          <Ionicons name="share-outline" size={24} color="#004411" />
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={styles.lyricsContainer} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.lyricsContainer}
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.lyrics}>{song.lyrics}</Text>
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -62,7 +72,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#2c3e50',
+    color: '#004411',
     lineHeight: 32,
   },
   shareButton: {
@@ -80,6 +90,6 @@ const styles = StyleSheet.create({
     padding: 20,
     textAlign: 'left',
   },
-});
+})
 
-export default SongDetailScreen;
+export default SongDetailScreen

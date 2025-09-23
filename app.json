@@ -10,23 +10,25 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#2c3e50"
+      "backgroundColor": "#004411"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "br.gftapps.canticosespirituais"
+      "bundleIdentifier": "br.gftapps.canticosespirituais",
+      "icon": {
+        "dark": "./assets/ios-dark.png",
+        "light": "./assets/ios-dark.png",
+        "tinted": "./assets/ios-dark.png"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#2c3e50"
+        "backgroundColor": "#004411"
       },
       "edgeToEdgeEnabled": true,
       "package": "br.gftapps.canticosespirituais",
       "versionCode": 7
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }

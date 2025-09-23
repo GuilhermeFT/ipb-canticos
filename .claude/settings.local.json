@@ -9,7 +9,8 @@
       "Bash(git checkout:*)",
       "Bash(node:*)",
       "Bash(npm:*)",
-      "Bash(npx create-expo-app:*)"
+      "Bash(npx create-expo-app:*)",
+      "WebFetch(domain:docs.expo.dev)"
     ],
     "deny": [],
     "ask": []
