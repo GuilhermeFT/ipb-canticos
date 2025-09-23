@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Song, SongsData } from '../types';
 
 // Import JSON data
-const songsData: SongsData = require('../assets/data/canticos.json');
+const songsData: SongsData = require('../../assets/data/canticos.json');
 
 export const useSongs = () => {
   const [songs, setSongs] = useState<Song[]>([]);
