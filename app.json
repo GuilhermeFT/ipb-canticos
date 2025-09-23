@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Cânticos Espirituais IPB",
+    "slug": "canticos-espirituais-ipb",
+    "version": "2.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2c3e50"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "br.gftapps.canticosespirituais"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2c3e50"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "br.gftapps.canticosespirituais",
+      "versionCode": 7
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
