@@ -1,31 +1,34 @@
-import React from 'react';
-import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
-import { router } from 'expo-router';
-import { useSongs } from '../hooks/useSongs';
-import SearchBar from '../components/SearchBar';
-import SongCard from '../components/SongCard';
-import { Song } from '../types';
-import Colors from '../constants/Colors';
+import React from 'react'
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+} from 'react-native'
+import { router } from 'expo-router'
+import { useSongs } from '../hooks/useSongs'
+import { SearchBar } from '../components/SearchBar'
+import { SongCard } from '../components/SongCard'
+import { Song } from '../types'
+import Colors from '../constants/Colors'
 
 export default function HomeScreen() {
-  const { songs, searchQuery, handleSearch, loading, totalSongs } = useSongs();
+  const { songs, searchQuery, handleSearch, loading, totalSongs } = useSongs()
 
   const handleSongPress = (song: Song) => {
     router.push({
       pathname: '/song/[id]',
       params: {
         id: song.id.toString(),
-        song: JSON.stringify(song)
-      }
-    });
-  };
+        song: JSON.stringify(song),
+      },
+    })
+  }
 
   const renderSongItem = ({ item }: { item: Song }) => (
-    <SongCard
-      song={item}
-      onPress={() => handleSongPress(item)}
-    />
-  );
+    <SongCard song={item} onPress={() => handleSongPress(item)} />
+  )
 
   const renderHeader = () => (
     <>
@@ -36,22 +39,23 @@ export default function HomeScreen() {
       />
       <View style={styles.statsContainer}>
         <Text style={styles.statsText}>
-          {searchQuery ? `${songs.length} de ${totalSongs} cânticos` : `${totalSongs} cânticos`}
+          {searchQuery
+            ? `${songs.length} de ${totalSongs} cânticos`
+            : `${totalSongs} cânticos`}
         </Text>
       </View>
     </>
-  );
+  )
 
   const renderEmptyState = () => (
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>
         {searchQuery
           ? `Nenhum cântico encontrado para "${searchQuery}"`
-          : 'Nenhum cântico disponível'
-        }
+          : 'Nenhum cântico disponível'}
       </Text>
     </View>
-  );
+  )
 
   if (loading) {
     return (
@@ -59,7 +63,7 @@ export default function HomeScreen() {
         <ActivityIndicator size="large" color={Colors.primary} />
         <Text style={styles.loadingText}>Carregando cânticos...</Text>
       </View>
-    );
+    )
   }
 
   return (
@@ -70,11 +74,13 @@ export default function HomeScreen() {
         keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={renderEmptyState}
-        contentContainerStyle={songs.length === 0 ? styles.emptyList : undefined}
+        contentContainerStyle={
+          songs.length === 0 ? styles.emptyList : undefined
+        }
         showsVerticalScrollIndicator={false}
       />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -117,4 +123,4 @@ const styles = StyleSheet.create({
   emptyList: {
     flexGrow: 1,
   },
-});
+})

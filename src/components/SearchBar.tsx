@@ -1,23 +1,28 @@
-import React from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import Colors from '../constants/Colors';
+import React from 'react'
+import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import Colors from '../constants/Colors'
 
 interface SearchBarProps {
-  value: string;
-  onChangeText: (text: string) => void;
-  placeholder?: string;
+  value: string
+  onChangeText: (text: string) => void
+  placeholder?: string
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
+export const SearchBar: React.FC<SearchBarProps> = ({
   value,
   onChangeText,
-  placeholder = "Buscar cânticos..."
+  placeholder = 'Buscar cânticos...',
 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <Ionicons name="search" size={20} color={Colors.textSecondary} style={styles.searchIcon} />
+        <Ionicons
+          name="search"
+          size={20}
+          color={Colors.textSecondary}
+          style={styles.searchIcon}
+        />
         <TextInput
           style={styles.input}
           placeholder={placeholder}
@@ -26,14 +31,21 @@ const SearchBar: React.FC<SearchBarProps> = ({
           placeholderTextColor={Colors.textSecondary}
         />
         {value ? (
-          <TouchableOpacity onPress={() => onChangeText('')} style={styles.clearButton}>
-            <Ionicons name="close-circle" size={20} color={Colors.textSecondary} />
+          <TouchableOpacity
+            onPress={() => onChangeText('')}
+            style={styles.clearButton}
+          >
+            <Ionicons
+              name="close-circle"
+              size={20}
+              color={Colors.textSecondary}
+            />
           </TouchableOpacity>
         ) : null}
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -68,6 +80,4 @@ const styles = StyleSheet.create({
   clearButton: {
     marginLeft: 10,
   },
-});
-
-export default SearchBar;
+})

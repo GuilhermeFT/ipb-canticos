@@ -1,24 +1,31 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Share } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { Song } from '../../types';
-import Colors from '../../constants/Colors';
+import React from 'react'
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  Share,
+} from 'react-native'
+import { useLocalSearchParams } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
+import { Song } from '../../types'
+import Colors from '../../constants/Colors'
 
 export default function SongDetailScreen() {
-  const { song: songString } = useLocalSearchParams();
-  const song: Song = JSON.parse(songString as string);
+  const { song: songString } = useLocalSearchParams()
+  const song: Song = JSON.parse(songString as string)
 
   const handleShare = async () => {
     try {
       await Share.share({
         message: `${song.title}\n\n${song.lyrics}\n\n- Cânticos Espirituais IPB`,
         title: song.title,
-      });
+      })
     } catch (error) {
-      console.error('Error sharing:', error);
+      console.error('Error sharing:', error)
     }
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -32,11 +39,14 @@ export default function SongDetailScreen() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={styles.lyricsContainer} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.lyricsContainer}
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.lyrics}>{song.lyrics}</Text>
       </ScrollView>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -84,4 +94,4 @@ const styles = StyleSheet.create({
     padding: 20,
     textAlign: 'left',
   },
-});
+})

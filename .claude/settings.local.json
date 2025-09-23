@@ -12,7 +12,8 @@
       "Bash(npx create-expo-app:*)",
       "WebFetch(domain:docs.expo.dev)",
       "Bash(npx expo install:*)",
-      "Bash(npx expo start:*)"
+      "Bash(npx expo start:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []

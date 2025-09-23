@@ -1,15 +1,15 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Song } from '../types';
-import Colors from '../constants/Colors';
+import React from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { Song } from '../types'
+import Colors from '../constants/Colors'
 
 interface SongCardProps {
-  song: Song;
-  onPress: () => void;
+  song: Song
+  onPress: () => void
 }
 
-const SongCard: React.FC<SongCardProps> = ({ song, onPress }) => {
+export const SongCard: React.FC<SongCardProps> = ({ song, onPress }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.content}>
@@ -20,15 +20,13 @@ const SongCard: React.FC<SongCardProps> = ({ song, onPress }) => {
           <Text style={styles.title} numberOfLines={2}>
             {song.title}
           </Text>
-          <Text style={styles.subtitle}>
-            Cântico {song.index}
-          </Text>
+          <Text style={styles.subtitle}>Cântico {song.index}</Text>
         </View>
         <Ionicons name="chevron-forward" size={20} color={Colors.placeholder} />
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   card: {
@@ -77,6 +75,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.textSecondary,
   },
-});
-
-export default SongCard;
+})

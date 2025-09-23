@@ -1,12 +1,12 @@
 export default {
-  primary: '#004411',      // Verde escuro (atualizado)
-  background: '#f8f9fa',   // Fundo claro
-  surface: '#ffffff',      // Superfície branca
-  text: '#333333',         // Texto escuro
+  primary: '#004411', // Verde escuro (atualizado)
+  background: '#f8f9fa', // Fundo claro
+  surface: '#ffffff', // Superfície branca
+  text: '#333333', // Texto escuro
   textSecondary: '#666666', // Texto secundário
-  border: '#e1e8ed',       // Bordas
-  placeholder: '#999999',  // Placeholder
-  shadow: '#000000',       // Sombra
+  border: '#e1e8ed', // Bordas
+  placeholder: '#999999', // Placeholder
+  shadow: '#000000', // Sombra
   white: '#ffffff',
   transparent: 'transparent',
 
@@ -19,4 +19,4 @@ export default {
   // Gradientes e variações
   primaryLight: '#228B22',
   primaryDark: '#003300',
-};
+}
