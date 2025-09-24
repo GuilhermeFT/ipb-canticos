@@ -23,15 +23,12 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "br.guilhermeft.canticosipb",
-      "versionCode": 7
+      "package": "br.guilhermeft.canticosipb"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [
-      "expo-router"
-    ],
+    "plugins": ["expo-router"],
     "scheme": "canticos-ipb",
     "owner": "guilhermeft",
     "extra": {
