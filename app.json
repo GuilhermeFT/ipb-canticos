@@ -32,6 +32,13 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "canticos-ipb"
+    "scheme": "canticos-ipb",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "349297c5-ef24-422d-bccc-16db1efcf652"
+      }
+    },
+    "owner": "guilhermeft"
   }
 }
