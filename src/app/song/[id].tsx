@@ -11,6 +11,7 @@ import { useLocalSearchParams } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { Song } from '../../types'
 import Colors from '../../constants/Colors'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function SongDetailScreen() {
   const { song: songString } = useLocalSearchParams()
@@ -28,7 +29,7 @@ export default function SongDetailScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.titleContainer}>
           <Text style={styles.number}>#{song.index}</Text>
@@ -45,7 +46,7 @@ export default function SongDetailScreen() {
       >
         <Text style={styles.lyrics}>{song.lyrics}</Text>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 

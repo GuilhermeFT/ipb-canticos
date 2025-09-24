@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   View,
   FlatList,
@@ -12,11 +12,12 @@ import { SearchBar } from '../components/SearchBar'
 import { SongCard } from '../components/SongCard'
 import { Song } from '../types'
 import Colors from '../constants/Colors'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function HomeScreen() {
   const { songs, searchQuery, handleSearch, loading, totalSongs } = useSongs()
 
-  const handleSongPress = (song: Song) => {
+  const handleSongPress = useCallback((song: Song) => {
     router.push({
       pathname: '/song/[id]',
       params: {
@@ -24,27 +25,33 @@ export default function HomeScreen() {
         song: JSON.stringify(song),
       },
     })
-  }
+  }, [])
 
-  const renderSongItem = ({ item }: { item: Song }) => (
-    <SongCard song={item} onPress={() => handleSongPress(item)} />
+  const renderSongItem = useCallback(
+    ({ item }: { item: Song }) => (
+      <SongCard song={item} onPress={() => handleSongPress(item)} />
+    ),
+    [handleSongPress]
   )
 
-  const renderHeader = () => (
-    <>
-      <SearchBar
-        value={searchQuery}
-        onChangeText={handleSearch}
-        placeholder="Buscar cânticos..."
-      />
-      <View style={styles.statsContainer}>
-        <Text style={styles.statsText}>
-          {searchQuery
-            ? `${songs.length} de ${totalSongs} cânticos`
-            : `${totalSongs} cânticos`}
-        </Text>
-      </View>
-    </>
+  const renderHeader = useMemo(
+    () => (
+      <>
+        <SearchBar
+          value={searchQuery}
+          onChangeText={handleSearch}
+          placeholder="Buscar cânticos..."
+        />
+        <View style={styles.statsContainer}>
+          <Text style={styles.statsText}>
+            {searchQuery
+              ? `${songs.length} de ${totalSongs} cânticos`
+              : `${totalSongs} cânticos`}
+          </Text>
+        </View>
+      </>
+    ),
+    [searchQuery, handleSearch, songs.length, totalSongs]
   )
 
   const renderEmptyState = () => (
@@ -67,7 +74,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={songs}
         renderItem={renderSongItem}
@@ -79,7 +86,7 @@ export default function HomeScreen() {
         }
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 

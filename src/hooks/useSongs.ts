@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Song, SongsData } from '../types'
 
 // Import JSON data
@@ -11,23 +11,18 @@ export const useSongs = () => {
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    try {
-      // Process the JSON data to create song objects
-      const { nomes, letras } = songsData
-      const songList: Song[] = nomes.map((nome, index) => ({
-        id: index + 1,
-        title: nome,
-        lyrics: letras[index],
-        index: index + 1,
-      }))
+    const { nomes, letras } = songsData
+    const songList: Song[] = nomes.map((nome, index) => ({
+      id: index + 1,
+      title: nome,
+      lyrics: letras[index],
+      index: index + 1,
+    }))
 
-      setSongs(songList)
-      setFilteredSongs(songList)
-    } catch (error) {
-      console.error('Error loading songs:', error)
-    } finally {
-      setLoading(false)
-    }
+    setSongs(songList)
+    setFilteredSongs(songList)
+
+    setLoading(false)
   }, [])
 
   useEffect(() => {
@@ -41,9 +36,9 @@ export const useSongs = () => {
     }
   }, [searchQuery, songs])
 
-  const handleSearch = (query: string) => {
+  const handleSearch = useCallback((query: string) => {
     setSearchQuery(query)
-  }
+  }, [])
 
   return {
     songs: filteredSongs,
