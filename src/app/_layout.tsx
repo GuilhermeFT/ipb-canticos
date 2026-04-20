@@ -1,8 +1,8 @@
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
-import Colors from '../constants/Colors'
 import { useEffect, useState } from 'react'
+import Colors from '../constants/Colors'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -33,14 +33,8 @@ export default function RootLayout() {
           },
         }}
       >
-        <Stack.Screen
-          name="(tabs)"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="song/[id]"
-          options={{ title: 'Cântico' }}
-        />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="song/[id]" options={{ title: 'Cântico' }} />
       </Stack>
     </>
   )
