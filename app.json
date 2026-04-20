@@ -26,9 +26,7 @@
       "predictiveBackGestureEnabled": false,
       "package": "br.guilhermeft.canticosipb"
     },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
-    },
+
     "plugins": ["expo-router"],
     "scheme": "canticos-ipb",
     "owner": "guilhermeft",
