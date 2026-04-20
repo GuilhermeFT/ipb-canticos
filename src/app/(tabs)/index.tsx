@@ -1,21 +1,22 @@
+import { Ionicons } from '@expo/vector-icons'
+import { router } from 'expo-router'
 import React, { useCallback, useMemo } from 'react'
 import {
-  View,
+  ActivityIndicator,
   FlatList,
+  ScrollView,
   StyleSheet,
   Text,
-  ActivityIndicator,
-  ScrollView,
   TouchableOpacity,
+  View,
 } from 'react-native'
-import { router } from 'expo-router'
-import { useSongs } from '../../hooks/useSongs'
-import { useRecentSongs } from '../../hooks/useRecentSongs'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { SearchBar } from '../../components/SearchBar'
 import { SongCard } from '../../components/SongCard'
-import { Song, SongWithSnippet } from '../../types'
 import Colors from '../../constants/Colors'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { useRecentSongs } from '../../hooks/useRecentSongs'
+import { useSongs } from '../../hooks/useSongs'
+import { Song, SongWithSnippet } from '../../types'
 
 export default function HomeScreen() {
   const {
@@ -49,7 +50,7 @@ export default function HomeScreen() {
         matchSnippet={item.matchSnippet}
       />
     ),
-    [handleSongPress]
+    [handleSongPress],
   )
 
   const showRecents = !searchQuery && !selectedLetter && recentSongs.length > 0
@@ -62,35 +63,47 @@ export default function HomeScreen() {
           onChangeText={handleSearch}
           placeholder="Buscar cânticos..."
         />
-        {availableLetters.length > 0 && (
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.alphabetScroll}
-            contentContainerStyle={styles.alphabetContent}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.alphabetScroll}
+          contentContainerStyle={styles.alphabetContent}
+        >
+          <TouchableOpacity
+            style={[
+              styles.letterButton,
+              !selectedLetter && styles.letterButtonActive,
+            ]}
+            onPress={() => handleLetterSelect('')}
+            activeOpacity={0.7}
           >
-            {availableLetters.map((letter) => (
-              <TouchableOpacity
-                key={letter}
+            <Ionicons
+              name="list"
+              size={18}
+              color={!selectedLetter ? Colors.white : Colors.text}
+            />
+          </TouchableOpacity>
+          {availableLetters.map((letter) => (
+            <TouchableOpacity
+              key={letter}
+              style={[
+                styles.letterButton,
+                selectedLetter === letter && styles.letterButtonActive,
+              ]}
+              onPress={() => handleLetterSelect(letter)}
+              activeOpacity={0.7}
+            >
+              <Text
                 style={[
-                  styles.letterButton,
-                  selectedLetter === letter && styles.letterButtonActive,
+                  styles.letterText,
+                  selectedLetter === letter && styles.letterTextActive,
                 ]}
-                onPress={() => handleLetterSelect(letter)}
-                activeOpacity={0.7}
               >
-                <Text
-                  style={[
-                    styles.letterText,
-                    selectedLetter === letter && styles.letterTextActive,
-                  ]}
-                >
-                  {letter}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        )}
+                {letter}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
         <View style={styles.statsContainer}>
           <Text style={styles.statsText}>
             {searchQuery || selectedLetter
@@ -138,7 +151,7 @@ export default function HomeScreen() {
       showRecents,
       recentSongs,
       handleSongPress,
-    ]
+    ],
   )
 
   const renderEmptyState = () => (
@@ -172,6 +185,10 @@ export default function HomeScreen() {
           songs.length === 0 ? styles.emptyList : undefined
         }
         showsVerticalScrollIndicator={false}
+        initialNumToRender={12}
+        maxToRenderPerBatch={10}
+        windowSize={10}
+        removeClippedSubviews={true}
       />
     </SafeAreaView>
   )
@@ -260,6 +277,7 @@ const styles = StyleSheet.create({
   },
   recentsContent: {
     paddingHorizontal: 12,
+    paddingVertical: 4,
     gap: 8,
   },
   recentCard: {
