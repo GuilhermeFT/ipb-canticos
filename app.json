@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
@@ -14,20 +13,20 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "br.guilhermeft.canticosipb"
+      "bundleIdentifier": "br.guilhermeft.canticosipb",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#004411"
       },
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "br.guilhermeft.canticosipb"
     },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
-    },
+
     "plugins": ["expo-router"],
     "scheme": "canticos-ipb",
     "owner": "guilhermeft",
@@ -36,6 +35,12 @@
       "eas": {
         "projectId": "349297c5-ef24-422d-bccc-16db1efcf652"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/349297c5-ef24-422d-bccc-16db1efcf652"
     }
   }
 }

@@ -7,9 +7,10 @@ import Colors from '../constants/Colors'
 interface SongCardProps {
   song: Song
   onPress: () => void
+  matchSnippet?: string
 }
 
-export const SongCard: React.FC<SongCardProps> = ({ song, onPress }) => {
+export const SongCard: React.FC<SongCardProps> = ({ song, onPress, matchSnippet }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.content}>
@@ -20,7 +21,13 @@ export const SongCard: React.FC<SongCardProps> = ({ song, onPress }) => {
           <Text style={styles.title} numberOfLines={2}>
             {song.title}
           </Text>
-          <Text style={styles.subtitle}>Cântico {song.index}</Text>
+          {matchSnippet ? (
+            <Text style={styles.snippet} numberOfLines={1}>
+              ...{matchSnippet}...
+            </Text>
+          ) : (
+            <Text style={styles.subtitle}>Cântico {song.index}</Text>
+          )}
         </View>
         <Ionicons name="chevron-forward" size={20} color={Colors.placeholder} />
       </View>
@@ -74,5 +81,10 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     color: Colors.textSecondary,
+  },
+  snippet: {
+    fontSize: 13,
+    color: Colors.textSecondary,
+    fontStyle: 'italic',
   },
 })

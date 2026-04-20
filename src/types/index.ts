@@ -5,14 +5,18 @@ export interface Song {
   index: number
 }
 
+export interface SongWithSnippet extends Song {
+  matchSnippet?: string
+}
+
 export interface SongsData {
   nomes: string[]
   letras: string[]
 }
 
 export type RootStackParamList = {
-  index: undefined
-  'song/[id]': { song: Song }
+  '(tabs)': undefined
+  'song/[id]': { song: string; id: string }
 }
 
 declare global {
