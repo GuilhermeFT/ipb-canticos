@@ -24,7 +24,6 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        working-directory: apps/mobile
         run: npm install
 
       - name: Publish EAS Update
@@ -34,7 +33,6 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Run eas update
-        working-directory: apps/mobile
         run: |
           eas update \
             --branch preview \
